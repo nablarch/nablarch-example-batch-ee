@@ -193,11 +193,12 @@
         <plugin>
           <groupId>com.nablarch.etl</groupId>
           <artifactId>nablarch-etl-maven-plugin</artifactId>
-          <version>1.0.0-SNAPSHOT</version>
+          <version>1.0.0</version>
           <configuration>
             <classes>
               <param>com.nablarch.example.app.batch.ee.dto.ZipCodeDto</param>
             </classes>
+            <outputPath>testdata/sqlloader/control</outputPath>
           </configuration>
           <executions>
             <execution>
