@@ -80,6 +80,30 @@
         <groupId>jp.co.tis.gsp</groupId>
         <artifactId>gsp-dba-maven-plugin</artifactId>
       </plugin>
+      <plugin>
+        <groupId>com.nablarch.etl</groupId>
+        <artifactId>nablarch-etl-maven-plugin</artifactId>
+        <version>1.0.0</version>
+        <configuration>
+          <classes>
+            <param>com.nablarch.example.app.batch.ee.dto.ZipCodeDto</param>
+          </classes>
+          <outputPath>testdata/sqlloader/control</outputPath>
+        </configuration>
+        <executions>
+          <execution>
+            <id>generate-ctrl-file</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate-ctrl-file</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.nablarch.etl</groupId>
+        <artifactId>nablarch-etl-maven-plugin</artifactId>
+      </plugin>
       <!-- gsp-dba-maven-pluginで自動生成したソースをビルド時に使用するための設定 -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -163,7 +187,6 @@
           <includeScope>runtime</includeScope>
         </configuration>
       </plugin>
-
     </plugins>
 
     <pluginManagement>
@@ -188,27 +211,6 @@
               </manifestEntries>
             </archive>
           </configuration>
-        </plugin>
-
-        <plugin>
-          <groupId>com.nablarch.etl</groupId>
-          <artifactId>nablarch-etl-maven-plugin</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <classes>
-              <param>com.nablarch.example.app.batch.ee.dto.ZipCodeDto</param>
-            </classes>
-            <outputPath>testdata/sqlloader/control</outputPath>
-          </configuration>
-          <executions>
-            <execution>
-              <id>generate-ctrl-file</id>
-              <phase>compile</phase>
-              <goals>
-                <goal>generate-ctrl-file</goal>
-              </goals>
-            </execution>
-          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
