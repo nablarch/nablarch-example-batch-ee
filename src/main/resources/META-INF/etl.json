@@ -6,6 +6,11 @@
   "jobs": {
     "etl-zip-code-csv-to-db-insert-batchlet": {
       "steps" : {
+        "file-check": {
+          "type": "file2db",
+          "bean": "com.nablarch.example.app.batch.ee.dto.ZipCodeDto",
+          "fileName": "KEN_ALL.CSV"
+        },
         "extract": {
           "type": "file2db",
           "bean": "com.nablarch.example.app.batch.ee.dto.ZipCodeDto",
@@ -29,6 +34,11 @@
         "truncate": {
           "type": "truncate",
           "entities": ["com.nablarch.example.app.batch.ee.dto.ZipCodeDto"]
+        },
+        "file-check": {
+          "type": "file2db",
+          "bean": "com.nablarch.example.app.batch.ee.dto.ZipCodeDto",
+          "fileName": "KEN_ALL.CSV"
         },
         "extract": {
           "type": "file2db",

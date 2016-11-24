@@ -4,11 +4,15 @@
     <listener ref="nablarchJobListenerExecutor" />
   </listeners>
 
-  <step id="truncate" next="extract">
+  <step id="truncate" next="file-check">
     <listeners>
       <listener ref="nablarchStepListenerExecutor" />
     </listeners>
     <batchlet ref="tableCleaningBatchlet" />
+  </step>
+  
+  <step id="file-check" next="extract">
+    <batchlet ref="fileCheckBatchlet" />
   </step>
 
   <step id="extract" next="validation">
