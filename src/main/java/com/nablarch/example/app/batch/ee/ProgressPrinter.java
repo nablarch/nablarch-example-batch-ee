@@ -47,7 +47,7 @@ public class ProgressPrinter {
         current = new Current(executedCount, endTime);
 
         final long remainCount = inputCount - executedCount;
-        final long remainSeconds = (long) (remainCount / currentTps.getTps());
+        final long remainSeconds = (long) (remainCount / totalTps.getTps());
         final LocalDateTime estimatedEndTime = LocalDateTime.now()
                                                             .plus(remainSeconds, ChronoUnit.SECONDS);
 

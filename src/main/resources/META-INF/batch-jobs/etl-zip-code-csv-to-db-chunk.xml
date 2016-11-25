@@ -19,9 +19,10 @@
     <listeners>
       <listener ref="nablarchStepListenerExecutor" />
       <listener ref="nablarchItemWriteListenerExecutor" />
+      <listener ref="progressPrintListener" />
     </listeners>
     <chunk item-count="3000">
-      <reader ref="fileItemReader" />
+      <reader ref="customFileItemReader" />
       <writer ref="databaseItemWriter" />
     </chunk>
   </step>
@@ -37,9 +38,10 @@
     <listeners>
       <listener ref="nablarchStepListenerExecutor" />
       <listener ref="nablarchItemWriteListenerExecutor" />
+      <listener ref="progressPrintListener" />
     </listeners>
     <chunk item-count="3000">
-      <reader ref="databaseItemReader" />
+      <reader ref="customDatabaseItemReader" />
       <writer ref="databaseItemWriter" />
     </chunk>
   </step>
