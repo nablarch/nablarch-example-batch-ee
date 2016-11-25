@@ -3,6 +3,10 @@
   <listeners>
     <listener ref="nablarchJobListenerExecutor" />
   </listeners>
+  
+  <step id="file-check" next="extract">
+    <batchlet ref="fileCheckBatchlet" />
+  </step>
 
   <step id="extract" next="validation">
     <batchlet ref="sqlLoaderBatchlet" />
