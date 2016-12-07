@@ -414,12 +414,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.jberet</groupId>
-      <artifactId>jberet-core</artifactId>
-      <version>1.1.0.Final</version>
-    </dependency>
-
-    <dependency>
       <groupId>org.jboss.marshalling</groupId>
       <artifactId>jboss-marshalling</artifactId>
       <version>1.4.10.Final</version>
@@ -452,7 +446,7 @@
     <dependency>
       <groupId>org.jberet</groupId>
       <artifactId>jberet-se</artifactId>
-      <version>1.1.0.Final</version>
+      <version>1.2.0.Final</version>
     </dependency>
 
     <dependency>
