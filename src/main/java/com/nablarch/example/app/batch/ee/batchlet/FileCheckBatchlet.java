@@ -13,7 +13,7 @@ import nablarch.etl.config.EtlConfig;
 import nablarch.etl.config.FileToDbStepConfig;
 import nablarch.etl.config.RootConfig;
 
-import com.nablarch.example.app.batch.ee.OperationNoticeException;
+import com.nablarch.example.app.batch.ee.OperatorNoticeException;
 
 @Named
 @Dependent
@@ -42,7 +42,7 @@ public class FileCheckBatchlet extends AbstractBatchlet {
         final File inputFile = config.getFile();
         if (!inputFile.exists()) {
             // とりあえずファイルが存在しない場合にログに出すメッセージを。
-            throw new OperationNoticeException("入力ファイル(" + inputFile.getAbsolutePath() + ")"
+            throw new OperatorNoticeException("入力ファイル(" + inputFile.getAbsolutePath() + ")"
                                                + "が存在しません。正しく受信できているか？権限が正しいか？などを確認してください。");
         }
         return "success";
