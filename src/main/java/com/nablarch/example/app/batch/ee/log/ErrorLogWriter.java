@@ -17,7 +17,7 @@ public class ErrorLogWriter {
     private static final List<Writer<?>> WRITERS = new ArrayList<>();
 
     /** デフォルトのライター */
-    private static final Writer<RuntimeException> DEFAULT_WRITER = new SystemErrorLogWriter();
+    private static final Writer<Exception> DEFAULT_WRITER = new SystemErrorLogWriter();
 
     static {
         WRITERS.add(new OperatorNoticeErrorLogWriter());
@@ -30,9 +30,9 @@ public class ErrorLogWriter {
      * @param exception 例外クラス
      */
     @SuppressWarnings("unchecked")
-    public void writeLog(final RuntimeException exception) {
-        final Writer<RuntimeException> writer =
-                (Writer<RuntimeException>) WRITERS.stream()
+    public void writeLog(final Exception exception) {
+        final Writer<Exception> writer =
+                (Writer<Exception>) WRITERS.stream()
                                                   .filter(w -> w.target()
                                                                 .isInstance(exception))
                                                   .findFirst()
@@ -43,7 +43,7 @@ public class ErrorLogWriter {
     /**
      * ログを出力する。
      */
-    public interface Writer<T extends RuntimeException> {
+    public interface Writer<T extends Exception> {
 
         /**
          * ログを出力する。
