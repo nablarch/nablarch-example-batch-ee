@@ -3,14 +3,9 @@ package com.nablarch.example.app.batch.ee.log;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
-
 /**
  * 例外に応じたログを出力する。
  */
-@ApplicationScoped
-@Named
 public class ErrorLogWriter {
 
     /** 例外毎のライター定義 */
@@ -33,10 +28,10 @@ public class ErrorLogWriter {
     public void writeLog(final Exception exception) {
         final Writer<Exception> writer =
                 (Writer<Exception>) WRITERS.stream()
-                                                  .filter(w -> w.target()
-                                                                .isInstance(exception))
-                                                  .findFirst()
-                                                  .orElse(DEFAULT_WRITER);
+                                           .filter(w -> w.target()
+                                                         .isInstance(exception))
+                                           .findFirst()
+                                           .orElse(DEFAULT_WRITER);
         writer.write(exception);
     }
 
