@@ -34,7 +34,7 @@ public class JbossLogger implements Logger {
 
     @Override
     public void logFatal(String message, Throwable error, Object... options) {
-        jbossLogger.fatalv(message, error, options);
+        jbossLogger.fatalv(error, message, options);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class JbossLogger implements Logger {
 
     @Override
     public void logError(String message, Throwable error, Object... options) {
-        jbossLogger.errorv(message, error, options);
+        jbossLogger.errorv(error, message, options);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class JbossLogger implements Logger {
 
     @Override
     public void logWarn(String message, Throwable error, Object... options) {
-        jbossLogger.warnv(message, error, options);
+        jbossLogger.warnv(error, message, options);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class JbossLogger implements Logger {
 
     @Override
     public void logInfo(String message, Throwable error, Object... options) {
-        jbossLogger.infov(message, error, options);
+        jbossLogger.infov(error, message, options);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class JbossLogger implements Logger {
 
     @Override
     public void logDebug(String message, Throwable error, Object... options) {
-        jbossLogger.debugv(message, error, options);
+        jbossLogger.debugv(error, message, options);
     }
 
     @Override
@@ -109,6 +109,6 @@ public class JbossLogger implements Logger {
 
     @Override
     public void logTrace(String message, Throwable error, Object... options) {
-        jbossLogger.tracev(message, error, options);
+        jbossLogger.tracev(error, message, options);
     }
 }
