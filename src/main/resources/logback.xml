@@ -4,6 +4,67 @@
       <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n</pattern>
     </encoder>
   </appender>
+
+  <appender name="FILE_APP" class="ch.qos.logback.core.FileAppender">
+    <file>application-error.log</file>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE_OPERATION" class="ch.qos.logback.core.FileAppender">
+    <file>operation-error.log</file>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE_OPERATION_MESSAGE" class="ch.qos.logback.core.FileAppender">
+    <file>operation-error-message.log</file>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n%nopex</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE_SYSTEM" class="ch.qos.logback.core.FileAppender">
+    <file>system-error.log</file>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE_SYSTEM_MESSAGE" class="ch.qos.logback.core.FileAppender">
+    <file>system-error-message.log</file>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n%nopex</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE_JBERET" class="ch.qos.logback.core.FileAppender">
+    <file>jberet.log</file>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="application-error" level="DEBUG" additivity="false">
+    <appender-ref ref="FILE_APP" />
+  </logger>
+
+  <logger name="operator" additivity="false">
+    <appender-ref ref="FILE_OPERATION" />
+    <appender-ref ref="FILE_OPERATION_MESSAGE" />
+  </logger>
+
+  <logger name="system-error" additivity="false">
+    <appender-ref ref="FILE_SYSTEM" />
+    <appender-ref ref="FILE_SYSTEM_MESSAGE" />
+  </logger>
+
+  <logger name="org.jberet" level="DEBUG">
+    <appender-ref ref="FILE_JBERET" />
+  </logger>
+
   <root level="INFO">
     <appender-ref ref="STDOUT" />
   </root>
