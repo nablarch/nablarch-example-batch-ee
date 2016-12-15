@@ -1,5 +1,6 @@
 package com.nablarch.example.app.batch.ee.batchlet;
 
+import com.nablarch.example.app.batch.ee.OperatorNoticeException;
 import nablarch.common.dao.DeferredEntityList;
 import nablarch.common.dao.EntityUtil;
 import nablarch.common.dao.UniversalDao;
@@ -11,7 +12,6 @@ import nablarch.core.log.Logger;
 import nablarch.core.log.LoggerManager;
 import nablarch.core.transaction.TransactionContext;
 import nablarch.core.validation.ee.ValidatorUtil;
-import nablarch.etl.EtlJobAbortedException;
 import nablarch.etl.WorkItem;
 import nablarch.etl.config.EtlConfig;
 import nablarch.etl.config.RootConfig;
@@ -89,7 +89,7 @@ public class ValidationApplicationErrorLogBatchlet extends AbstractBatchlet {
             validationResult.addErrorCount(constraintViolations.size());
             onError(workItem, constraintViolations, errorTable);
             if (isOverLimit(stepConfig, validationResult)) {
-                throw new EtlJobAbortedException("number of validation errors has exceeded the maximum number of errors."
+                throw new OperatorNoticeException("バリデーションエラーが規定数を超えました。入力データを確かめてください。"
                         + " bean class=[" + inputTable.getName() + ']');
             }
         }
@@ -175,8 +175,8 @@ public class ValidationApplicationErrorLogBatchlet extends AbstractBatchlet {
             if (mode == Mode.CONTINUE) {
                 return "VALIDATION_ERROR";
             } else {
-                throw new EtlJobAbortedException(
-                        "abort the JOB because there was a validation error."
+                throw new OperatorNoticeException(
+                        "バリデーションエラーが発生したため処理を中断します。入力データを確認してください。"
                                 + " bean class=[" + inputTableEntity.getName() + "],"
                                 + " error count=[" + validationResult.getErrorCount() + ']');
             }

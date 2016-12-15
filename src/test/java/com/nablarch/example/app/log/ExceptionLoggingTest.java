@@ -1,8 +1,6 @@
 package com.nablarch.example.app.log;
 
 import org.jberet.runtime.JobExecutionImpl;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -52,7 +50,7 @@ public class ExceptionLoggingTest {
     /**
      * 業務エラー。
      * 不正なデータのある入力ファイルを使用して、アプリケーションログが出力されること。
-     * また、バリデーションエラーがあると処理を中断するため、システムエラーログも出力される。
+     * また、バリデーションエラーがあると処理を中断するため、オペレーションエラーログも出力される。
      */
     @Test
     public void testApplicationException() throws Exception {
@@ -79,7 +77,7 @@ public class ExceptionLoggingTest {
     }
 
     /**
-     * DBにテーブルがない場合を想定しているため、実行前にテーブルを削除すること。
+     * DBにテーブルがない場合を想定しているため、実行前に ZIP_CODE_DATAテーブル を削除すること。
      *
      * システムエラー。
      * DBのテーブルが見つからない場合に、システムエラーログが出力されること。

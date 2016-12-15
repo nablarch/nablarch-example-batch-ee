@@ -1,49 +1,62 @@
 <configuration>
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
-      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n</pattern>
+      <pattern>%d %-5level %logger{10} %msg%n</pattern>
+    </encoder>
+  </appender>
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <file>log/general.log</file>
+    <encoder>
+      <pattern>%d %-5level %logger{10} %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE_PROGRESS" class="ch.qos.logback.core.FileAppender">
+    <file>log/progress.log</file>
+    <encoder>
+      <pattern>%d %-5level %logger{10} %msg%n</pattern>
     </encoder>
   </appender>
 
   <appender name="FILE_APP" class="ch.qos.logback.core.FileAppender">
-    <file>application-error.log</file>
+    <file>log/application-error.log</file>
     <encoder>
-      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n</pattern>
+      <pattern>%d %-5level %logger{10} %msg%n</pattern>
     </encoder>
   </appender>
 
   <appender name="FILE_OPERATION" class="ch.qos.logback.core.FileAppender">
-    <file>operation-error.log</file>
+    <file>log/operation-error.log</file>
     <encoder>
-      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n</pattern>
+      <pattern>%d %-5level %logger{10} %msg%n</pattern>
     </encoder>
   </appender>
 
   <appender name="FILE_OPERATION_MESSAGE" class="ch.qos.logback.core.FileAppender">
-    <file>operation-error-message.log</file>
+    <file>log/operation-error-message.log</file>
     <encoder>
-      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n%nopex</pattern>
+      <pattern>%d %-5level %logger{10} %msg%n%ex{short}</pattern>
     </encoder>
   </appender>
 
   <appender name="FILE_SYSTEM" class="ch.qos.logback.core.FileAppender">
-    <file>system-error.log</file>
+    <file>log/system-error.log</file>
     <encoder>
-      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n</pattern>
+      <pattern>%d %-5level %logger{10} %msg%n</pattern>
     </encoder>
   </appender>
 
   <appender name="FILE_SYSTEM_MESSAGE" class="ch.qos.logback.core.FileAppender">
-    <file>system-error-message.log</file>
+    <file>log/system-error-message.log</file>
     <encoder>
-      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n%nopex</pattern>
+      <pattern>%d %-5level %logger{10} %msg%n%ex{short}</pattern>
     </encoder>
   </appender>
 
   <appender name="FILE_JBERET" class="ch.qos.logback.core.FileAppender">
-    <file>jberet.log</file>
+    <file>log/jberet.log</file>
     <encoder>
-      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n</pattern>
+      <pattern>%d %-5level %logger{10} %msg%n</pattern>
     </encoder>
   </appender>
 
@@ -65,7 +78,15 @@
     <appender-ref ref="FILE_JBERET" />
   </logger>
 
+  <logger name="metrics">
+    <appender-ref ref="FILE_PROGRESS" />
+  </logger>
+  <logger name="PROGRESS">
+    <appender-ref ref="FILE_PROGRESS" />
+  </logger>
+
   <root level="INFO">
     <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE" />
   </root>
 </configuration>
