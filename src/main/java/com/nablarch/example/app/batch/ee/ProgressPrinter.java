@@ -19,7 +19,7 @@ import nablarch.core.log.LoggerManager;
  */
 public class ProgressPrinter {
 
-    private static final Logger LOGGER = LoggerManager.get("metrics");
+    private static final Logger LOGGER = LoggerManager.get("PROGRESS");
 
     /** 処理対象件数 */
     private final long inputCount;

@@ -40,7 +40,7 @@ public class ExceptionLoggingTest {
     }
 
     /**
-     * 正常終了するため、ログを出さない。
+     * 正常終了するため、エラーログを出さない。
      */
     @Test
     public void testSuccess() throws Exception {
@@ -77,7 +77,7 @@ public class ExceptionLoggingTest {
     }
 
     /**
-     * DBにテーブルがない場合を想定しているため、実行前に ZIP_CODE_DATAテーブル を削除すること。
+     * DBにテーブルがない場合を想定しているため、実行前に手動で ZIP_CODE_DATAテーブル を削除すること。
      *
      * システムエラー。
      * DBのテーブルが見つからない場合に、システムエラーログが出力されること。

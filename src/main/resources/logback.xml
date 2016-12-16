@@ -28,28 +28,21 @@
   <appender name="FILE_OPERATION" class="ch.qos.logback.core.FileAppender">
     <file>log/operation-error.log</file>
     <encoder>
-      <pattern>%d %-5level %logger{10} %msg%n</pattern>
+      <pattern>%d %-5level %logger{10} [%X{logid}] %msg%n</pattern>
     </encoder>
   </appender>
 
-  <appender name="FILE_OPERATION_MESSAGE" class="ch.qos.logback.core.FileAppender">
-    <file>log/operation-error-message.log</file>
+  <appender name="FILE_OPERATOR_MESSAGE" class="ch.qos.logback.core.FileAppender">
+    <file>log/operator-message.log</file>
     <encoder>
-      <pattern>%d %-5level %logger{10} %msg%n%ex{short}</pattern>
+      <pattern>%d %-5level %logger{10} [%X{logid}] %msg%n%nopex</pattern>
     </encoder>
   </appender>
 
   <appender name="FILE_SYSTEM" class="ch.qos.logback.core.FileAppender">
     <file>log/system-error.log</file>
     <encoder>
-      <pattern>%d %-5level %logger{10} %msg%n</pattern>
-    </encoder>
-  </appender>
-
-  <appender name="FILE_SYSTEM_MESSAGE" class="ch.qos.logback.core.FileAppender">
-    <file>log/system-error-message.log</file>
-    <encoder>
-      <pattern>%d %-5level %logger{10} %msg%n%ex{short}</pattern>
+      <pattern>%d %-5level %logger{10} [%X{logid}] %msg%n</pattern>
     </encoder>
   </appender>
 
@@ -66,21 +59,18 @@
 
   <logger name="operator" additivity="false">
     <appender-ref ref="FILE_OPERATION" />
-    <appender-ref ref="FILE_OPERATION_MESSAGE" />
+    <appender-ref ref="FILE_OPERATOR_MESSAGE" />
   </logger>
 
   <logger name="system-error" additivity="false">
     <appender-ref ref="FILE_SYSTEM" />
-    <appender-ref ref="FILE_SYSTEM_MESSAGE" />
+    <appender-ref ref="FILE_OPERATOR_MESSAGE" />
   </logger>
 
   <logger name="org.jberet" level="DEBUG">
     <appender-ref ref="FILE_JBERET" />
   </logger>
 
-  <logger name="metrics">
-    <appender-ref ref="FILE_PROGRESS" />
-  </logger>
   <logger name="PROGRESS">
     <appender-ref ref="FILE_PROGRESS" />
   </logger>
