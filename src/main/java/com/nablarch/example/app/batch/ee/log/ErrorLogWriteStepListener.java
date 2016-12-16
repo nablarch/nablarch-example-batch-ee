@@ -36,9 +36,12 @@ public class ErrorLogWriteStepListener extends AbstractStepListener {
     public void afterStep() throws Exception {
         final Exception exception = stepContext.getException();
         if (exception != null) {
-            MDC.put("logid", UUID.randomUUID());
-            errorLogWriter.writeLog(exception);
-            MDC.remove("logid");
+            try {
+                MDC.put("logid", UUID.randomUUID());
+                errorLogWriter.writeLog(exception);
+            } finally {
+                MDC.remove("logid");
+            }
         }
     }
 }
