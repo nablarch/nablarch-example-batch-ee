@@ -19,7 +19,7 @@ import nablarch.core.log.LoggerManager;
  */
 public class ProgressPrinter {
 
-    private static final Logger LOGGER = LoggerManager.get("metrics");
+    private static final Logger LOGGER = LoggerManager.get("PROGRESS");
 
     /** 処理対象件数 */
     private final long inputCount;
@@ -52,7 +52,8 @@ public class ProgressPrinter {
                                                             .plus(remainSeconds, ChronoUnit.SECONDS);
 
         final NumberFormat numberFormat = new DecimalFormat("0.0");
-        LOGGER.logInfo("今回のTPS: " + numberFormat.format(currentTps.getTps())
+        LOGGER.logInfo("ステップ: " + stepContext.getStepName()
+                       + ", 今回のTPS: " + numberFormat.format(currentTps.getTps())
                        + ", 起動後からのTPS: " + numberFormat.format(totalTps.getTps())
                        + ", 残りの処理件数: " + (inputCount - executedCount)
                        + ", 終了予測時間: " + estimatedEndTime.format(

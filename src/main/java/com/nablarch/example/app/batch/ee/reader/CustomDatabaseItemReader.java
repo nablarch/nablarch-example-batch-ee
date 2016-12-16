@@ -41,7 +41,6 @@ public class CustomDatabaseItemReader extends DatabaseItemReader {
 
         final long inputCount = UniversalDao.countBySqlFile(config.getBean(), config.getSqlId());
 
-        System.out.println("stepContext.getTransientUserData() = " + stepContext.getTransientUserData());
         final ProgressPrinter progressPrinter = new ProgressPrinter(inputCount);
         stepContext.setTransientUserData(progressPrinter);
         super.open(checkpoint);

@@ -12,6 +12,9 @@
   </step>
   
   <step id="file-check" next="extract">
+    <listeners>
+      <listener ref="errorLogWriteStepListener" />
+    </listeners>
     <batchlet ref="fileCheckBatchlet" />
   </step>
 
@@ -30,8 +33,9 @@
   <step id="validation" next="load">
     <listeners>
       <listener ref="nablarchStepListenerExecutor" />
+      <listener ref="errorLogWriteStepListener" />
     </listeners>
-    <batchlet ref="validationBatchlet" />
+    <batchlet ref="validationApplicationErrorLogBatchlet" />
   </step>
 
   <step id="load">
@@ -39,6 +43,7 @@
       <listener ref="nablarchStepListenerExecutor" />
       <listener ref="nablarchItemWriteListenerExecutor" />
       <listener ref="progressPrintListener" />
+      <listener ref="errorLogWriteStepListener" />
     </listeners>
     <chunk item-count="3000">
       <reader ref="customDatabaseItemReader" />

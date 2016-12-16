@@ -1,10 +1,13 @@
 package com.nablarch.example.app.batch.ee.log;
 
+import org.jboss.logging.MDC;
+
 import javax.batch.api.listener.AbstractStepListener;
 import javax.batch.runtime.context.StepContext;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.UUID;
 
 /**
  * エラーログを出力するステップリスナー実装。
@@ -33,7 +36,12 @@ public class ErrorLogWriteStepListener extends AbstractStepListener {
     public void afterStep() throws Exception {
         final Exception exception = stepContext.getException();
         if (exception != null) {
-            errorLogWriter.writeLog(exception);
+            try {
+                MDC.put("logid", UUID.randomUUID());
+                errorLogWriter.writeLog(exception);
+            } finally {
+                MDC.remove("logid");
+            }
         }
     }
 }
