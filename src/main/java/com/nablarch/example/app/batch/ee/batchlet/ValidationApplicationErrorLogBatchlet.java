@@ -1,6 +1,19 @@
 package com.nablarch.example.app.batch.ee.batchlet;
 
-import com.nablarch.example.app.batch.ee.OperatorNoticeException;
+import static nablarch.etl.EtlUtil.verifyRequired;
+
+import java.text.MessageFormat;
+import java.util.Set;
+
+import javax.batch.api.AbstractBatchlet;
+import javax.batch.runtime.context.JobContext;
+import javax.batch.runtime.context.StepContext;
+import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+
 import nablarch.common.dao.DeferredEntityList;
 import nablarch.common.dao.EntityUtil;
 import nablarch.common.dao.UniversalDao;
@@ -18,18 +31,7 @@ import nablarch.etl.config.RootConfig;
 import nablarch.etl.config.ValidationStepConfig;
 import nablarch.etl.config.ValidationStepConfig.Mode;
 
-import javax.batch.api.AbstractBatchlet;
-import javax.batch.runtime.context.JobContext;
-import javax.batch.runtime.context.StepContext;
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
-import java.text.MessageFormat;
-import java.util.Set;
-
-import static nablarch.etl.EtlUtil.verifyRequired;
+import com.nablarch.example.app.batch.ee.OperatorNoticeException;
 
 /**
  * {@link nablarch.etl.ValidationBatchlet}のログを業務エラーログとして出力するクラス。
@@ -199,7 +201,7 @@ public class ValidationApplicationErrorLogBatchlet extends AbstractBatchlet {
             final Class<?> errorTable) {
 
         for (ConstraintViolation<WorkItem> violation : constraintViolations) {
-            LOGGER_APP.logDebug(MessageFormat.format(
+            LOGGER_APP.logInfo(MessageFormat.format(
                             "validation error has occurred. bean class=[{0}], property name=[{1}], error message=[{2}], line number=[{3}]",
                             item.getClass()
                                     .getName(),
