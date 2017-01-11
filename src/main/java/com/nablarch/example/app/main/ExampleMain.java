@@ -1,12 +1,18 @@
 package com.nablarch.example.app.main;
 
-import nablarch.core.util.StringUtil;
-import org.jberet.runtime.JobExecutionImpl;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
 import javax.batch.operations.BatchRuntimeException;
 import javax.batch.operations.JobOperator;
 import javax.batch.runtime.BatchRuntime;
 import javax.batch.runtime.BatchStatus;
-import java.util.concurrent.TimeUnit;
+
+import org.jberet.runtime.JobExecutionImpl;
+
+import nablarch.core.util.StringUtil;
+
+import com.nablarch.example.app.batch.ee.Warning;
 
 /**
  * Exampleバッチアプリケーションの実行クラス。
@@ -25,7 +31,6 @@ import java.util.concurrent.TimeUnit;
  * 2.JOB定義ファイルで、対象のstep要素内にend要素を記述する。<br>
  *   <end on="WARNING" exit-status="WARNING"/><br>
  *   ※onにはステップで返却した値を、exit-statusには"WARNING"を指定すること。
- * <p/>
  *
  */
 public class ExampleMain {
@@ -56,19 +61,21 @@ public class ExampleMain {
             final JobExecutionImpl jobExecution = (JobExecutionImpl) jobOperator.getJobExecution(jobExecutionId);
             jobExecution.awaitTermination(0, TimeUnit.SECONDS);  //no timeout
 
+            // 終了コード判定
+            final String status = jobExecution.getExitStatus();
+
+            if (Objects.equals(status, Warning.STATUS)) {
+                // ジョブのステータスがWARNINGの場合は警告終了の2を戻す
+                System.exit(2);
+            }
+
             // バッチステータスがCOMPLETED以外の場合は異常終了
             if (jobExecution.getBatchStatus() != BatchStatus.COMPLETED) {
                 System.exit(1);
             }
-
-            // 終了コード判定
-            String status = jobExecution.getExitStatus();
+            
             if (status == null) {
                 throw new BatchRuntimeException(String.format("The job did not complete: %s%n", jobXml));
-            } else if ("WARNING".equals(status)) {
-
-                // STEPは正常終了しているが、バリデーションエラーなど警告すべき事項が発生している場合
-                System.exit(2);
             }
 
         } catch (InterruptedException e) {

@@ -32,6 +32,7 @@ import nablarch.etl.config.ValidationStepConfig;
 import nablarch.etl.config.ValidationStepConfig.Mode;
 
 import com.nablarch.example.app.batch.ee.OperatorNoticeException;
+import com.nablarch.example.app.batch.ee.Warning;
 
 /**
  * {@link nablarch.etl.ValidationBatchlet}のログを業務エラーログとして出力するクラス。
@@ -170,14 +171,15 @@ public class ValidationApplicationErrorLogBatchlet extends AbstractBatchlet {
      * @param validationResult バリデーション結果
      * @return 終了ステータス
      */
-    private static String buildResult(
+    private String buildResult(
             final Mode mode, final Class<?> inputTableEntity, final ValidationResult validationResult) {
 
         if (validationResult.hasError()) {
             if (mode == Mode.CONTINUE) {
-                return "VALIDATION_ERROR";
+                jobContext.setExitStatus(Warning.STATUS);
+                return Warning.STATUS;
             } else {
-                throw new OperatorNoticeException(
+                throw new ValidationErrorNoticeException(
                         "バリデーションエラーが発生したため処理を中断します。入力データを確認してください。"
                                 + " bean class=[" + inputTableEntity.getName() + "],"
                                 + " error count=[" + validationResult.getErrorCount() + ']');
@@ -290,6 +292,16 @@ public class ValidationApplicationErrorLogBatchlet extends AbstractBatchlet {
          */
         boolean hasError() {
             return errorCount != 0;
+        }
+    }
+
+    /**
+     * バリデーションエラーが発生したことを通知する例外。
+     */
+    public static class ValidationErrorNoticeException extends OperatorNoticeException implements Warning {
+
+        public ValidationErrorNoticeException(final String message) {
+            super(message);
         }
     }
 }
