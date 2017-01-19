@@ -2,6 +2,8 @@ package com.nablarch.example.app.batch.ee.form;
 
 /**
  * 社員情報Form。
+ *
+ * @author Nabu Rakutaro
  */
 public class EmployeeForm {
 
@@ -106,6 +108,7 @@ public class EmployeeForm {
      *
      * @param bonusMagnification 賞与倍率
      */
+    @SuppressWarnings("SameParameterValue")
     public void setBonusMagnification(Long bonusMagnification) {
         this.bonusMagnification = bonusMagnification;
     }
@@ -124,6 +127,7 @@ public class EmployeeForm {
      *
      * @param fixedBonus 固定賞与
      */
+    @SuppressWarnings("SameParameterValue")
     public void setFixedBonus(Long fixedBonus) {
         this.fixedBonus = fixedBonus;
     }

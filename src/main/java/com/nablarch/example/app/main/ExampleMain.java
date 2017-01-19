@@ -27,59 +27,67 @@ import java.util.concurrent.TimeUnit;
  *   ※onにはステップで返却した値を、exit-statusには"WARNING"を指定すること。
  * <p/>
  *
+ * @author Nabu Rakutaro
  */
-public class ExampleMain {
+public final class ExampleMain {
+
+    /**
+     * 隠蔽コンストラクタ
+     */
+    private ExampleMain() {}
 
     /**
      * メインメソッド。
      * @param args JOB名称
      */
+    @SuppressWarnings("CallToSystemExit")
     public static void main(final String[] args) {
-
-        // JOBを取得する
-        if (args.length != 1) {
-            usage();
-            return;
-        }
-        final String jobXml = args[0];
-        if (StringUtil.isNullOrEmpty(jobXml)) {
+        if (args.length != 1 || StringUtil.isNullOrEmpty(args[0])) {
             usage();
             return;
         }
 
-        // JOBを実行する
+        final int status = executeJob(args[0]);
+        System.exit(status);
+    }
+
+    /**
+     * ジョブを実行する
+     *
+     * @param job ジョブ名
+     * @return 終了コード
+     */
+    @SuppressWarnings("MethodWithMultipleReturnPoints")
+    private static int executeJob(final String job) {
         final JobOperator jobOperator = BatchRuntime.getJobOperator();
-        final long jobExecutionId;
-
+        final long jobExecutionId = jobOperator.start(job, null);
+        final JobExecutionImpl jobExecution = (JobExecutionImpl) jobOperator.getJobExecution(jobExecutionId);
         try {
-            jobExecutionId = jobOperator.start(jobXml, null);
-            final JobExecutionImpl jobExecution = (JobExecutionImpl) jobOperator.getJobExecution(jobExecutionId);
             jobExecution.awaitTermination(0, TimeUnit.SECONDS);  //no timeout
-
-            // バッチステータスがCOMPLETED以外の場合は異常終了
-            if (jobExecution.getBatchStatus() != BatchStatus.COMPLETED) {
-                System.exit(1);
-            }
-
-            // 終了コード判定
-            String status = jobExecution.getExitStatus();
-            if (status == null) {
-                throw new BatchRuntimeException(String.format("The job did not complete: %s%n", jobXml));
-            } else if ("WARNING".equals(status)) {
-
-                // STEPは正常終了しているが、バリデーションエラーなど警告すべき事項が発生している場合
-                System.exit(2);
-            }
-
-        } catch (InterruptedException e) {
-            // 処理が中断された場合
-            System.exit(1);
+        } catch (InterruptedException ignored) {
+            return 1;
         }
+
+        // バッチステータスがCOMPLETED以外の場合は異常終了
+        if (jobExecution.getBatchStatus() != BatchStatus.COMPLETED) {
+            return 1;
+        }
+
+        // 終了コード判定
+        final String status = jobExecution.getExitStatus();
+        if (status == null) {
+            throw new BatchRuntimeException(String.format("The job did not complete: %s%n", job));
+        } else if ("WARNING".equals(status)) {
+            // STEPは正常終了しているが、バリデーションエラーなど警告すべき事項が発生している場合
+            return 2;
+        }
+        return 0;
     }
 
     /**
      * 標準エラー出力を行う。
      */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     private static void usage() {
         System.err.printf("JOB name is invalid. Please pass the JOB name.");
     }

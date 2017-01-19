@@ -14,6 +14,8 @@ import javax.inject.Named;
  * テーブルをTRUNCATEするBatchlet。
  * <p/>
  * TRUNCATE対象のテーブルはBatchletの「tableName」プロパティで指定します。
+ *
+ * @author Nabu Rakutaro
  */
 @Dependent
 @Named
@@ -24,6 +26,7 @@ public class TruncateTableBatchlet extends AbstractBatchlet {
      */
     @Inject
     @BatchProperty
+    @SuppressWarnings("unused")
     private String tableName;
 
     @Override
