@@ -6,6 +6,7 @@ import javax.batch.operations.BatchRuntimeException;
 import javax.batch.operations.JobOperator;
 import javax.batch.runtime.BatchRuntime;
 import javax.batch.runtime.BatchStatus;
+import javax.batch.runtime.JobExecution;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -40,11 +41,9 @@ public final class ExampleMain {
      * メインメソッド。
      * @param args JOB名称
      */
-    @SuppressWarnings("CallToSystemExit")
     public static void main(final String[] args) {
         if (args.length != 1 || StringUtil.isNullOrEmpty(args[0])) {
-            usage();
-            return;
+            throw new IllegalArgumentException("JOB name is invalid. Please pass the JOB name.");
         }
 
         final int status = executeJob(args[0]);
@@ -57,7 +56,6 @@ public final class ExampleMain {
      * @param job ジョブ名
      * @return 終了コード
      */
-    @SuppressWarnings("MethodWithMultipleReturnPoints")
     private static int executeJob(final String job) {
         final JobOperator jobOperator = BatchRuntime.getJobOperator();
         final long jobExecutionId = jobOperator.start(job, null);
@@ -67,7 +65,16 @@ public final class ExampleMain {
         } catch (InterruptedException ignored) {
             return 1;
         }
+        return deriveStatusCode(job, jobExecution);
+    }
 
+    /**
+     * ステータスコードを導出する
+     * @param job ジョブ名
+     * @param jobExecution ジョブの実行情報
+     * @return ステータスコード
+     */
+    private static int deriveStatusCode(final String job, final JobExecution jobExecution) {
         // バッチステータスがCOMPLETED以外の場合は異常終了
         if (jobExecution.getBatchStatus() != BatchStatus.COMPLETED) {
             return 1;
@@ -82,13 +89,5 @@ public final class ExampleMain {
             return 2;
         }
         return 0;
-    }
-
-    /**
-     * 標準エラー出力を行う。
-     */
-    @SuppressWarnings("UseOfSystemOutOrSystemErr")
-    private static void usage() {
-        System.err.printf("JOB name is invalid. Please pass the JOB name.");
     }
 }

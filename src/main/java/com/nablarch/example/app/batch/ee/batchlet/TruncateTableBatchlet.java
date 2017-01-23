@@ -26,7 +26,6 @@ public class TruncateTableBatchlet extends AbstractBatchlet {
      */
     @Inject
     @BatchProperty
-    @SuppressWarnings("unused")
     private String tableName;
 
     @Override

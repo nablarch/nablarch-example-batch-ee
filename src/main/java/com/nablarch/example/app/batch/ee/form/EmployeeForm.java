@@ -108,7 +108,6 @@ public class EmployeeForm {
      *
      * @param bonusMagnification 賞与倍率
      */
-    @SuppressWarnings("SameParameterValue")
     public void setBonusMagnification(Long bonusMagnification) {
         this.bonusMagnification = bonusMagnification;
     }
@@ -127,7 +126,6 @@ public class EmployeeForm {
      *
      * @param fixedBonus 固定賞与
      */
-    @SuppressWarnings("SameParameterValue")
     public void setFixedBonus(Long fixedBonus) {
         this.fixedBonus = fixedBonus;
     }
