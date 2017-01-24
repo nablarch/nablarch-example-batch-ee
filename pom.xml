@@ -367,7 +367,7 @@
     <dependency>
       <groupId>org.jberet</groupId>
       <artifactId>jberet-core</artifactId>
-      <version>1.1.0.Final</version>
+      <version>1.2.2.Final</version>
     </dependency>
 
     <dependency>
@@ -403,7 +403,7 @@
     <dependency>
       <groupId>org.jberet</groupId>
       <artifactId>jberet-se</artifactId>
-      <version>1.1.0.Final</version>
+      <version>1.2.0.Final</version>
     </dependency>
 
     <dependency>
