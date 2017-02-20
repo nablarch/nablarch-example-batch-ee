@@ -466,6 +466,12 @@
       <artifactId>nablarch-testing-default-configuration</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>com.nablarch.integration</groupId>
+      <artifactId>nablarch-jboss-logging-adaptor</artifactId>
+      <version>1.0.0</version>
+    </dependency>
   </dependencies>
 
   <dependencyManagement>
