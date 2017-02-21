@@ -77,13 +77,13 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
 チェックアウトディレクトリにて以下のコマンドを実行すると、サンプルアプリケーションを動作させることができます。
 
 ```
-    $java -cp .\target\*;.\target\dependency\* com.nablarch.example.app.main.ExampleMain <batch-job名>
+    $java -cp .\target\*;.\target\dependency\* nablarch.fw.batch.ee.Main <batch-job名>
 ```
 
 <batch-job名>の指定例を示します。
 
 ```
-    $java -cp .\target\*;.\target\dependency\* com.nablarch.example.app.main.ExampleMain zip-code-truncate-table
+    $java -cp .\target\*;.\target\dependency\* nablarch.fw.batch.ee.Main zip-code-truncate-table
 ```
 
 <batch-job名>を変えることで、CSVからDBおよびDBからCSVへのデータ保存と、DBのTRUNCATE処理を行うことができます。

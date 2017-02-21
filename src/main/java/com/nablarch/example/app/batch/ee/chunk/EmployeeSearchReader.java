@@ -1,14 +1,18 @@
 package com.nablarch.example.app.batch.ee.chunk;
 
-import com.nablarch.example.app.batch.ee.form.EmployeeForm;
-import nablarch.common.dao.DeferredEntityList;
-import nablarch.common.dao.UniversalDao;
+import java.io.Serializable;
+import java.util.Iterator;
 
 import javax.batch.api.chunk.AbstractItemReader;
 import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.Serializable;
-import java.util.Iterator;
+
+import nablarch.common.dao.DeferredEntityList;
+import nablarch.common.dao.UniversalDao;
+import nablarch.fw.batch.ee.progress.ProgressManager;
+
+import com.nablarch.example.app.batch.ee.form.EmployeeForm;
 
 /**
  * 社員情報をDBから取得する{@link javax.batch.api.chunk.ItemReader}実装クラス。
@@ -25,8 +29,24 @@ public class EmployeeSearchReader extends AbstractItemReader {
     /** 社員情報を保持するイテレータ */
     private Iterator<EmployeeForm> iterator;
 
+    /** 進捗管理Bean */
+    private final ProgressManager progressManager;
+
+    /**
+     * コンストラクタ。
+     *
+     * @param progressManager 進捗管理Bean
+     */
+    @Inject
+    public EmployeeSearchReader(ProgressManager progressManager) {
+        this.progressManager = progressManager;
+    }
+
     @Override
     public void open(Serializable checkpoint) throws Exception {
+
+        progressManager.setInputCount(UniversalDao.countBySqlFile(EmployeeForm.class, "SELECT_EMPLOYEE"));
+
         list = (DeferredEntityList<EmployeeForm>) UniversalDao.defer()
                 .findAllBySqlFile(EmployeeForm.class, "SELECT_EMPLOYEE");
         iterator = list.iterator();

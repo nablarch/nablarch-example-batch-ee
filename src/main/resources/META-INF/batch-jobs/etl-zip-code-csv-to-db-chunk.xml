@@ -15,6 +15,7 @@
     <listeners>
       <listener ref="nablarchStepListenerExecutor" />
       <listener ref="nablarchItemWriteListenerExecutor" />
+      <listener ref="progressLogListener" />
     </listeners>
     <chunk item-count="3000">
       <reader ref="fileItemReader" />
@@ -26,13 +27,19 @@
     <listeners>
       <listener ref="nablarchStepListenerExecutor" />
     </listeners>
-    <batchlet ref="validationBatchlet" />
+    <batchlet ref="validationBatchlet">
+      <properties>
+        <property name="progressLogOutputInterval" value="5000" />
+      </properties>
+        
+    </batchlet>
   </step>
 
   <step id="load">
     <listeners>
       <listener ref="nablarchStepListenerExecutor" />
       <listener ref="nablarchItemWriteListenerExecutor" />
+      <listener ref="progressLogListener" />
     </listeners>
     <chunk item-count="3000">
       <reader ref="databaseItemReader" />
