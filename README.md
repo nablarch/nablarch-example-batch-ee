@@ -80,7 +80,7 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
     $java -cp .\target\*;.\target\dependency\* nablarch.fw.batch.ee.Main <batch-job名>
 ```
 
-\<batch-job名>の指定例を示します。
+\<batch-job名\>の指定例を示します。
 
 ```
     $java -cp .\target\*;.\target\dependency\* nablarch.fw.batch.ee.Main zip-code-truncate-table
