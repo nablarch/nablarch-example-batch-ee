@@ -38,7 +38,7 @@ import nablarch.etl.WorkItem;
         "updateData",
         "updateDataReason" })
 @CsvFormat(
-        nullToEmpty = false,
+        emptyToNull = false,
         fieldSeparator = ',',
         lineSeparator = "\r\n",
         quote = '"',
