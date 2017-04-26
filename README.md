@@ -41,7 +41,7 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
     [INFO] ------------------------------------------------------------------------
     (中略)
 
-#### 3.2. アプリケーションのビルド、依存するライブラリの取得
+#### 3.2. アプリケーションのビルド
 
 次に、アプリケーションをビルドします。以下のコマンドを実行してください。
 
@@ -58,33 +58,30 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
     [INFO] ------------------------------------------------------------------------
     (中略)
 
-ビルド後、以下のコマンドを実行し依存するライブラリを取得します。
-
-    $mvn dependency:copy-dependencies
-
-ライブラリの取得に成功すると、以下のようなログがコンソールに出力されます。
-
-    (中略)
-    [INFO] Copying weld-api-2.2.SP4.jar to c:\example\nablarch-example-batch-ee\target\dependency\weld-api-2.2.SP4.jar
-    [INFO] Copying stax-api-1.0.1.jar to c:\example\nablarch-example-batch-ee\target\dependency\stax-api-1.0.1.jar
-    [INFO] ------------------------------------------------------------------------
-    [INFO] BUILD SUCCESS
-    [INFO] ------------------------------------------------------------------------
-    (中略)
 
 ### 4. アプリケーションの実行
 
 チェックアウトディレクトリにて以下のコマンドを実行すると、サンプルアプリケーションを動作させることができます。
 
 ```
-    $java -cp .\target\*;.\target\dependency\* nablarch.fw.batch.ee.Main <batch-job名>
+    $mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=<batch-job名>
 ```
 
 \<batch-job名\>の指定例を示します。
 
 ```
-    $java -cp .\target\*;.\target\dependency\* nablarch.fw.batch.ee.Main zip-code-truncate-table
+    $mvn exec:java -Dexec.mainClass=nablarch.fw.batch.ee.Main -Dexec.args=zip-code-truncate-table
 ```
+
+なお、 `maven-assembly-plugin` を使用して実行可能jarの生成を行っているため、以下の手順にて実行することもできる。
+
+1. ``target/application-<version_no>.zip`` を任意のディレクトリに解答する。
+2. 以下のコマンドにて実行する
+
+  ```
+      java -jar <1で解凍したディレクトリ名>/nablarch-example-batch-ee-<version_no>.jar <batch-job名>
+  ```
+
 
 \<batch-job名\>を変えることで、CSVからDBおよびDBからCSVへのデータ保存と、DBのTRUNCATE処理を行うことができます。
 実行後、次のCSVファイルやテーブルを見て処理結果を確認してください。
