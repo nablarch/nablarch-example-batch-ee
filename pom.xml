@@ -74,7 +74,43 @@
         <directory>src/${db.product}/resources</directory>
       </resource>
     </resources>
+    
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+              <mainClass>nablarch.fw.batch.ee.Main</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptors>
+            <descriptor>distribution.xml</descriptor>
+          </descriptors>
+          <finalName>application-${project.version}</finalName>
+          <appendAssemblyId>false</appendAssemblyId>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
       <!-- エンティティクラス生成等を行うための設定 -->
       <plugin>
         <groupId>jp.co.tis.gsp</groupId>
@@ -128,14 +164,6 @@
           <excludes>
             <exclude>**/com/nablarch/example/app/entity/*</exclude>
           </excludes>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>2.9</version>
-        <configuration>
-          <includeScope>runtime</includeScope>
         </configuration>
       </plugin>
     </plugins>
