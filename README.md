@@ -75,7 +75,7 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
 
 なお、 `maven-assembly-plugin` を使用して実行可能jarの生成を行っているため、以下の手順にて実行することもできる。
 
-1. ``target/application-<version_no>.zip`` を任意のディレクトリに解答する。
+1. ``target/application-<version_no>.zip`` を任意のディレクトリに解凍する。
 2. 以下のコマンドにて実行する
 
   ```

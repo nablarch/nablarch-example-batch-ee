@@ -5,11 +5,16 @@
     <format>zip</format>
   </formats>
   <includeBaseDirectory>false</includeBaseDirectory>
+  <files>
+    <file>
+      <source>target/${project.build.finalName}.jar</source>
+      <outputDirectory>/</outputDirectory>
+    </file>
+  </files>
   <dependencySets>
     <dependencySet>
-      <unpack>false</unpack>
-      <scope>runtime</scope>
-      <outputDirectory>/</outputDirectory>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>lib</outputDirectory>
     </dependencySet>
   </dependencySets>
 </assembly>
