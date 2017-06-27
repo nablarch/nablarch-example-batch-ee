@@ -3,13 +3,13 @@ package com.nablarch.example.app.batch.ee.chunk;
 import java.io.Serializable;
 import java.util.Iterator;
 
-import javax.batch.api.chunk.AbstractItemReader;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import nablarch.common.dao.DeferredEntityList;
 import nablarch.common.dao.UniversalDao;
+import nablarch.fw.batch.ee.chunk.BaseDatabaseItemReader;
 import nablarch.fw.batch.ee.progress.ProgressManager;
 
 import com.nablarch.example.app.batch.ee.form.EmployeeForm;
@@ -21,7 +21,7 @@ import com.nablarch.example.app.batch.ee.form.EmployeeForm;
  */
 @Dependent
 @Named
-public class EmployeeSearchReader extends AbstractItemReader {
+public class EmployeeSearchReader extends BaseDatabaseItemReader {
 
     /** 社員情報のリスト */
     private DeferredEntityList<EmployeeForm> list;
@@ -43,7 +43,7 @@ public class EmployeeSearchReader extends AbstractItemReader {
     }
 
     @Override
-    public void open(Serializable checkpoint) throws Exception {
+    public void doOpen(Serializable checkpoint) throws Exception {
 
         progressManager.setInputCount(UniversalDao.countBySqlFile(EmployeeForm.class, "SELECT_EMPLOYEE"));
 
@@ -61,7 +61,7 @@ public class EmployeeSearchReader extends AbstractItemReader {
     }
 
     @Override
-    public void close() throws Exception {
+    public void doClose() throws Exception {
         list.close();
     }
 }
