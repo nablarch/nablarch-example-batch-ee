@@ -1,0 +1,21 @@
+language: java
+branches:
+  only:
+  - master
+  - develop
+install: true
+jdk:
+- oraclejdk8
+cache:
+  directories:
+  - $HOME/.m2
+script:
+- git clone -b master https://github.com/nablarch/nablarch-ci-script.git $HOME/build-script/
+  && chmod +x $HOME/build-script/travis-ci/*.sh
+- $HOME/build-script/travis-ci/install-mvn-3.2.5.sh
+- mvn -P gsp generate-resources
+- $HOME/build-script/travis-ci/nablarch-mvn-build-nodeploy.sh
+- $HOME/build-script/travis-ci/upload-mvn-test-report.sh
+notifications:
+  slack:
+    secure: X4X1jrgMOWPb6zLMrhGcgBwCyZdVQZuWTTe//Ykp5MQ3AvOiN44i5RiibvmHAXsEm7fg9w8M5KXEftVCMMTCiXi1BsBD/23ZLKgeAtSmO/EJ7qZNkAA1k6yOngP6+bonVcJ5ZmMNxifzSNISu+I64vbCQY/wyWPH5G9XPBvgd1rnlwIVvKmJeHbv86Jf1W6R3jtOOOKG5rJYaUTdi+dnGNI1QYZR5iqd1m8zfEv2CLMmA5vNBUaDxdR8LdQDdhjnGlZYpiPxSxpk58Ldnp0ODF0juaYwa0a+/nlGxJ8/HpdvxcDRPlji5yijl1dtk2zXDKqZd3VagU+asAZjY8KUQNxtjvgoT4bI4AqgEnoDOXMWdQNlxS4h40lz+GidAaDiQ71OzEgj8NHRIQsPw4jrOZDOzRN7lvLYj2e63+CLM4k8/QGDbo4Sez336HazjOuzSbd1fDAtsCqHSsJwpphQFW1Esu6MMypBI8QZL/NVB7x7e9VR6gMyOqvp4a9p5wwLBnmNdEPR2RJtYn7PMJCTcOlYDp4HjVImx7rV1jLtZeWwf/91FujyDruwqJkYu9erKUAtMUYiNl2gE7gbWpEFPT8G55aOIiZ0ZqewKiCUqyEASY+TziwBedwudLu3dLJGiU+ptugZypmiwY48mYLC8+Zm+N9DaQ3taUSuFWopsRE=
