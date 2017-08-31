@@ -122,7 +122,7 @@
         <version>1.0.0</version>
         <configuration>
           <classes>
-            <param>com.nablarch.example.app.batch.ee.dto.ZipCodeDto</param>
+            <param>com.nablarch.example.app.batch.ee.dto.csv.ZipCodeDto</param>
           </classes>
           <outputPath>testdata/sqlloader/control</outputPath>
         </configuration>
@@ -346,6 +346,7 @@
     <dependency>
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-common-databind</artifactId>
+      <version>1.2.0</version>
     </dependency>
 
     <dependency>
