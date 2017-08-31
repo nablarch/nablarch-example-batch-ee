@@ -19,7 +19,6 @@
     </listeners>
     <chunk item-count="3000">
       <reader ref="fileItemReader" />
-      <processor ref="zipCodeLineNumberProcessor" />
       <writer ref="databaseItemWriter" />
     </chunk>
   </step>
