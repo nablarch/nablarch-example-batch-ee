@@ -319,18 +319,6 @@
 
     <profile>
       <id>travis</id>
-      <repositories>
-        <repository>
-          <id>travis</id>
-          <url>${develop_repo_url}</url>
-        </repository>
-      </repositories>
-      <pluginRepositories>
-        <pluginRepository>
-          <id>travis</id>
-          <url>${develop_repo_url}</url>
-        </pluginRepository>
-      </pluginRepositories>
       <distributionManagement>
         <site>
           <id>travis</id>
