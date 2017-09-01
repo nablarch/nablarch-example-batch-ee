@@ -193,6 +193,15 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-webdav-jackrabbit</artifactId>
+        <version>3.0.0</version>
+      </extension>
+    </extensions>
+
   </build>
 
   <!--
@@ -306,6 +315,16 @@
         <envName>本番環境</envName>
         <envDir>production</envDir>
       </properties>
+    </profile>
+
+    <profile>
+      <id>travis</id>
+      <distributionManagement>
+        <site>
+          <id>travis</id>
+          <url>${develop_test_report_url}</url>
+        </site>
+      </distributionManagement>
     </profile>
   </profiles>
 
@@ -507,5 +526,25 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <additionalparam>-Xdoclint:none</additionalparam>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
 
 </project>

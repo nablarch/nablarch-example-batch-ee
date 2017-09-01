@@ -160,3 +160,8 @@ DBをOracleに変更する方法に関しては、解説書の以下の章を参
 
     pom.xmlのpropertiesタグにある、dba.erdFileの値を以下の値に書き換える
     src/main/resources/entity/oracle.edm
+
+
+| master | develop |
+|:-----------|:------------|
+|[![Build Status](https://travis-ci.org/nablarch/nablarch-example-batch-ee.svg?branch=master)](https://travis-ci.org/nablarch/nablarch-example-batch-ee)|[![Build Status](https://travis-ci.org/nablarch/nablarch-example-batch-ee.svg?branch=develop)](https://travis-ci.org/nablarch/nablarch-example-batch-ee)|
