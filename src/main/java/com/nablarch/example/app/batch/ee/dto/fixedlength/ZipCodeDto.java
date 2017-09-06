@@ -27,6 +27,7 @@ public class ZipCodeDto extends WorkItem {
 
     /** 郵便番号（5桁） */
     @Field(offset = 6, length = 5)
+    @Rpad
     private String zipCode5digit;
 
     /** 郵便番号（7桁） */
