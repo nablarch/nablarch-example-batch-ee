@@ -1,7 +1,7 @@
 {
   "step1": {
     "type": "db2file",
-    "bean": "com.nablarch.example.app.batch.ee.dto.ZipCodeDto",
+    "bean": "com.nablarch.example.app.batch.ee.dto.csv.ZipCodeDto",
     "fileName": "etl-zip-code-output-chunk.csv",
     "sqlId": "SELECT_ZIPCODE"
   }

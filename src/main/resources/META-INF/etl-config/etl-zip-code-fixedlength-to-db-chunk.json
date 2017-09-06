@@ -1,0 +1,24 @@
+{
+  "truncate": {
+    "type": "truncate",
+    "entities": [
+      "com.nablarch.example.app.batch.ee.dto.fixedlength.ZipCodeDto"
+    ]
+  },
+  "extract": {
+    "type": "file2db",
+    "bean": "com.nablarch.example.app.batch.ee.dto.fixedlength.ZipCodeDto",
+    "fileName": "fixedlength-zip-code-data.txt"
+  },
+  "validation": {
+    "type": "validation",
+    "bean": "com.nablarch.example.app.batch.ee.dto.fixedlength.ZipCodeDto",
+    "errorEntity": "com.nablarch.example.app.batch.ee.dto.fixedlength.ZipCodeErrorEntity",
+    "mode": "ABORT"
+  },
+  "load": {
+    "type": "db2db",
+    "bean": "com.nablarch.example.app.entity.ZipCodeData",
+    "sqlId": "SELECT_ZIPCODE_FROM_WORK"
+  }
+}
