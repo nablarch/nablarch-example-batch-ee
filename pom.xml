@@ -6,12 +6,12 @@
   <parent>
     <groupId>com.nablarch.archetype</groupId>
     <artifactId>nablarch-archetype-parent</artifactId>
-    <version>5u10</version>
+    <version>5u11</version>
   </parent>
 
   <groupId>com.nablarch.example</groupId>
   <artifactId>nablarch-example-batch-ee</artifactId>
-  <version>5u10</version>
+  <version>5u11</version>
 
   <!-- DB接続設定とビルド設定 -->
   <properties>
@@ -345,7 +345,6 @@
     <dependency>
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-fw-batch-ee</artifactId>
-      <version>1.2.1</version>
     </dependency>
 
     <dependency>
@@ -361,7 +360,6 @@
     <dependency>
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-common-databind</artifactId>
-      <version>1.2.0</version>
     </dependency>
 
     <dependency>
@@ -372,7 +370,6 @@
     <dependency>
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-etl</artifactId>
-      <version>1.2.0</version>
     </dependency>
 
     <dependency>
@@ -455,7 +452,7 @@
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <version>1.4.191</version>
+      <version>1.4.192</version>
     </dependency>
 
     <dependency>
@@ -518,7 +515,7 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>5u10</version>
+        <version>5u11</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
