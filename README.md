@@ -27,15 +27,11 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
 まず、データベースのセットアップ及びエンティティクラスの作成を行います。以下のコマンドを実行してください。
 
     $cd nablarch-example-batch-ee
-    $mvn -P gsp generate-resources
+    $mvn generate-resources
 
-実行に成功すると、以下のようなログがコンソールに出力され、nablarch-example-batchディレクトリの下にgsp-targetディレクトリが作成されます。
+実行に成功すると、以下のようなログがコンソールに出力され、nablarch-example-batchディレクトリの下にtargetディレクトリが作成されます。
 
     (中略)
-    [INFO] --- gsp-dba-maven-plugin:3.2.0:export-schema (default-cli) @ nablarch-example-batch-ee ---
-    [INFO] PUBLICスキーマのExportを開始します。:c:\example\nablarch-example-batch-ee\gsp-target\output\PUBLIC.dmp
-    [INFO] Building jar: c:\example\nablarch-example-batch-ee\gsp-target\output\nablarch-example-batch-ee-testdata-1.0.1.jar
-    [INFO] PUBLICスキーマのExport完了
     [INFO] ------------------------------------------------------------------------
     [INFO] BUILD SUCCESS
     [INFO] ------------------------------------------------------------------------
