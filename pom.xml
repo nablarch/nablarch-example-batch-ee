@@ -5,7 +5,7 @@
 
   <groupId>com.nablarch.example</groupId>
   <artifactId>nablarch-example-batch-ee</artifactId>
-  <version>5u13</version>
+  <version>5u13-SNAPSHOT</version>
 
   <properties>
     <!-- 利用するJavaのバージョン -->
