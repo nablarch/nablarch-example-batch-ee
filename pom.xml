@@ -127,7 +127,7 @@
       <plugin>
         <groupId>com.nablarch.etl</groupId>
         <artifactId>nablarch-etl-maven-plugin</artifactId>
-        <version>1.0.0</version>
+        <version>5-NEXT-SNAPSHOT</version>
         <configuration>
           <classes>
             <param>com.nablarch.example.app.batch.ee.dto.csv.ZipCodeDto</param>
