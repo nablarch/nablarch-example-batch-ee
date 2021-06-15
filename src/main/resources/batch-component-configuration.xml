@@ -17,12 +17,10 @@
     <!-- 環境設定 -->
     <config-file file="env.properties" />
     <config-file file="common.properties" />
-    <config-file file="base-path.properties" />
 
     <!-- データベース設定-->
     <import file="nablarch/batch/db-for-batch.xml" />
     <import file="data-source.xml"/>
-    <import file="sql-loader-config.xml" />
 
     <!-- 自動採番型を持たないRDBMSで、ユニバーサルDAOを使用するための設定 -->
     <import file="nablarch/common/dao.xml" />

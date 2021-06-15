@@ -1,6 +1,6 @@
 nablarch-example-batch-ee
 ===============
-Nablarch Framework（nablarch-fw-batch-ee、nablarch-etl）のバッチExampleアプリケーションです。
+Nablarch Framework（nablarch-fw-batch-ee）のバッチExampleアプリケーションです。
 
 ## 実行手順
 
@@ -84,38 +84,15 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
 
 動作させることができる処理は、次の通りです。
 
-* JBatchのみ利用（ETLなし）
-    * 賞与計算バッチ(DB→DB)
-        * EMPLOYEEテーブルから社員情報を取得し、賞与を計算してBONUSテーブルに登録する、Chunkステップのバッチです。
-    * 郵便番号テーブルTRUNCATEバッチ
-        * ZIP_CODE_DATAテーブル と ZIP_CODE_DATA_WORKテーブル のデータを削除する、Batchletステップのバッチです。
-* ETLとJBatchを利用
-    * 郵便番号登録ETLバッチ(SQL*LoaderによるCSV→DB)
-        * \<チェックアウトディレクトリ\>/testdata/input/KEN_ALL.CSV を入力元とし、SQL*Loaderにより ZIP_CODE_DATA テーブルにデータを登録します。
-        * __SQL*Loaderを使用するため、実行する際はデータベースをOracleに変更してください。__ 変更方法は[DBの変更について](#6. DBの変更について)を見てください。
-        * SQL\*Loaderでエラーが出た場合、testdata/sqlloader/output/にSQL\*Loaderのログが出力されるため、確認してください。
-    * 郵便番号登録ETLバッチ(SQL*Loaderを使わないCSV→DB)
-        * \<チェックアウトディレクトリ\>/testdata/input/KEN_ALL.CSV を入力元とし、ZIP_CODE_DATA テーブルにデータを登録します。
-        * SQL*Loaderは使いません。
-    * 郵便番号出力バッチ(DB→CSV)
-        * ZIP_CODE_DATAテーブルのデータを \<チェックアウトディレクトリ\>/testdata/output 以下に出力します。
-    * 郵便番号登録ETLバッチ(固定長→DB)
-        * \<チェックアウトディレクトリ\>/testdata/input/fixedlength-zip-code-data を入力元とし、ZIP_CODE_DATA テーブルにデータを登録します。
-        * SQL*Loaderは使いません。
-    * 郵便番号出力バッチ(DB→固定長)
-        * ZIP_CODE_DATAテーブルのデータを \<チェックアウトディレクトリ\>/testdata/output 以下に出力します。
+* 賞与計算バッチ(DB→DB)
+    * EMPLOYEEテーブルから社員情報を取得し、賞与を計算してBONUSテーブルに登録する、Chunkステップのバッチです。
+* 郵便番号テーブルTRUNCATEバッチ
+    * ZIP_CODE_DATAテーブル と ZIP_CODE_DATA_WORKテーブル のデータを削除する、Batchletステップのバッチです。
 
 動作させる処理は、引数の\<batch-job名\>を変更することで選択できます。
 
-* JBatchのみ利用（ETLなし）
-    * \<batch-job名\>に「bonus-calculate」を指定すると、賞与計算バッチが実行されます。
-    * \<batch-job名\>に「zip-code-truncate-table」を指定すると、郵便番号テーブルTRUNCATEバッチが実行されます。
-* ETLとJBatchを利用
-    * \<batch-job名\>に「etl-zip-code-csv-to-db-insert-batchlet」を指定すると、郵便番号登録ETLバッチ(SQL*LoaderによるCSV→DB)が実行されます。
-    * \<batch-job名\>に「etl-zip-code-csv-to-db-chunk」を指定すると、郵便番号登録ETLバッチ(SQL*Loaderを使わないCSV→DB)が実行されます。
-    * \<batch-job名\>に「etl-zip-code-db-to-csv-chunk」を指定すると、郵便番号出力バッチ(DB→CSV)が実行されます。
-    * \<batch-job名\>に「etl-zip-code-fixedlength-to-db-chunk」を指定すると、郵便番号登録ETLバッチ(固定長→DB)が実行されます。
-    * \<batch-job名\>に「etl-zip-code-db-to-fixedlength-chunk」を指定すると、郵便番号出力バッチ(DB→固定長)が実行されます。
+ * \<batch-job名\>に「bonus-calculate」を指定すると、賞与計算バッチが実行されます。
+ * \<batch-job名\>に「zip-code-truncate-table」を指定すると、郵便番号テーブルTRUNCATEバッチが実行されます。
 
 
 なお、インプットのCSV、固定長データは、下記サイトより取得できる郵便番号データ（全国一括）を元にしています。
