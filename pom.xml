@@ -202,11 +202,6 @@
 
     <dependency>
       <groupId>com.nablarch.framework</groupId>
-      <artifactId>nablarch-core-validation-ee</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-fw-batch-ee</artifactId>
     </dependency>
 
