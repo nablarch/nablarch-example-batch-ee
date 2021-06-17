@@ -7,22 +7,13 @@
     <!-- テーブル定義 -->
     <import file="nablarch/schema-config.xml" />
 
-    <!-- 精査に使用する文字集合定義 -->
-    <import file="charset-definition.xml"/>
-
-    <!-- DomainManager 実装クラス設定 -->
-    <component name="domainManager"
-               class="com.nablarch.example.app.validation.DomainBeanManager"/>
-
     <!-- 環境設定 -->
     <config-file file="env.properties" />
     <config-file file="common.properties" />
-    <config-file file="base-path.properties" />
 
     <!-- データベース設定-->
     <import file="nablarch/batch/db-for-batch.xml" />
     <import file="data-source.xml"/>
-    <import file="sql-loader-config.xml" />
 
     <!-- 自動採番型を持たないRDBMSで、ユニバーサルDAOを使用するための設定 -->
     <import file="nablarch/common/dao.xml" />
