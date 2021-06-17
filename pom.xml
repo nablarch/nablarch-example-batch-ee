@@ -125,26 +125,6 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>com.nablarch.etl</groupId>
-        <artifactId>nablarch-etl-maven-plugin</artifactId>
-        <version>5-NEXT-SNAPSHOT</version>
-        <configuration>
-          <classes>
-            <param>com.nablarch.example.app.batch.ee.dto.csv.ZipCodeDto</param>
-          </classes>
-          <outputPath>testdata/sqlloader/control</outputPath>
-        </configuration>
-        <executions>
-          <execution>
-            <id>generate-ctrl-file</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>generate-ctrl-file</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.2</version>
@@ -222,11 +202,6 @@
 
     <dependency>
       <groupId>com.nablarch.framework</groupId>
-      <artifactId>nablarch-core-validation-ee</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-fw-batch-ee</artifactId>
     </dependency>
 
@@ -248,11 +223,6 @@
     <dependency>
       <groupId>com.nablarch.framework</groupId>
       <artifactId>nablarch-common-jdbc</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>com.nablarch.framework</groupId>
-      <artifactId>nablarch-etl</artifactId>
     </dependency>
 
     <dependency>
