@@ -2,15 +2,15 @@ package com.nablarch.example.app.batch.ee.chunk;
 
 import com.nablarch.example.app.batch.ee.form.EmployeeForm;
 import com.nablarch.example.app.entity.Bonus;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * {@link BonusCalculateProcessor}のテストクラス。
  */
-public class BonusCalculateProcessorTest {
+class BonusCalculateProcessorTest {
 
     private BonusCalculateProcessor sut = new BonusCalculateProcessor();
 
@@ -18,7 +18,7 @@ public class BonusCalculateProcessorTest {
      * 固定賞与のケース。
      */
     @Test
-    public void testFixedBonus() {
+    void testFixedBonus() {
 
         final EmployeeForm dto = new EmployeeForm();
         dto.setEmployeeId(1L);
@@ -35,7 +35,7 @@ public class BonusCalculateProcessorTest {
      * 基本給をもとに賞与計算を行うケース。
      */
     @Test
-    public void testMagnification() {
+    void testMagnification() {
 
         final EmployeeForm dto = new EmployeeForm();
         dto.setEmployeeId(2L);
