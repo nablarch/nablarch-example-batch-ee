@@ -3,9 +3,9 @@ package com.nablarch.example.app.batch.ee.chunk;
 import java.io.Serializable;
 import java.util.Iterator;
 
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 import nablarch.common.dao.DeferredEntityList;
 import nablarch.common.dao.UniversalDao;
@@ -15,7 +15,7 @@ import nablarch.fw.batch.ee.progress.ProgressManager;
 import com.nablarch.example.app.batch.ee.form.EmployeeForm;
 
 /**
- * 社員情報をDBから取得する{@link javax.batch.api.chunk.ItemReader}実装クラス。
+ * 社員情報をDBから取得する{@link jakarta.batch.api.chunk.ItemReader}実装クラス。
  *
  * @author Nabu Rakutaro
  */
