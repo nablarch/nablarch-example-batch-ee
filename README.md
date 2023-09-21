@@ -156,8 +156,8 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
 
 DBをOracleに変更する方法に関しては、解説書の以下の章を参照してください。
 
-* 8.5.2 gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法
-* 8.5.1 使用するRDBMSの変更手順
+* 8.6.2 gsp-dba-maven-plugin(DBA作業支援ツール)の初期設定方法
+* 8.6.1 使用するRDBMSの変更手順
 
 ただし、gsp-dba-maven-pluginの設定に関して、data-model.edmの準備の手順の代わりに、以下の手順を行ってください。
 
