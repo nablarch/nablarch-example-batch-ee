@@ -1,2 +1,1 @@
  *.csv     text eol=crlf
- testdata/input/fixedlength-zip-code-data.txt    text eol=crlf

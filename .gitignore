@@ -122,8 +122,3 @@ crashlytics-build.properties
 fabric.properties
 
 *.log
-testdata/sqlloader/output
-
-## output files
-testdata/output/*.csv
-testdata/output/*.txt
