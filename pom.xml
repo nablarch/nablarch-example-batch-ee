@@ -5,7 +5,7 @@
 
   <groupId>com.nablarch.example</groupId>
   <artifactId>nablarch-example-batch-ee</artifactId>
-  <version>6</version>
+  <version>6u1</version>
 
   <properties>
     <!-- 利用するJavaのバージョン -->
@@ -314,7 +314,7 @@
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>1.2.4</version>
+      <version>1.2.13</version>
     </dependency>
 
     <dependency>
@@ -371,7 +371,7 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>6</version>
+        <version>6u1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
