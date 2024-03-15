@@ -92,7 +92,7 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
 * ETLとJBatchを利用
     * 郵便番号登録ETLバッチ(SQL*LoaderによるCSV→DB)
         * \<チェックアウトディレクトリ\>/testdata/input/KEN_ALL.CSV を入力元とし、SQL*Loaderにより ZIP_CODE_DATA テーブルにデータを登録します。
-        * __SQL*Loaderを使用するため、実行する際はデータベースをOracleに変更してください。__ 変更方法は[DBの変更について](#6. DBの変更について)を見てください。
+        * __SQL*Loaderを使用するため、実行する際はデータベースをOracleに変更してください。__ 変更方法は[DBの変更について](#6-DBの変更について)を見てください。
         * SQL\*Loaderでエラーが出た場合、testdata/sqlloader/output/にSQL\*Loaderのログが出力されるため、確認してください。
     * 郵便番号登録ETLバッチ(SQL*Loaderを使わないCSV→DB)
         * \<チェックアウトディレクトリ\>/testdata/input/KEN_ALL.CSV を入力元とし、ZIP_CODE_DATA テーブルにデータを登録します。
