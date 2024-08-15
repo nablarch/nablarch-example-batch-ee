@@ -18,7 +18,7 @@
     <db.adminUser>admin</db.adminUser>
     <db.user>NABLARCH_EXAMPLE</db.user>
     
-    <jberet.version>2.1.1.Final</jberet.version>
+    <jberet.version>2.1.4.Final</jberet.version>
   </properties>
 
   <build>
@@ -285,6 +285,12 @@
       <groupId>org.wildfly.security</groupId>
       <artifactId>wildfly-elytron-security-manager</artifactId>
       <version>1.19.0.Final</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>32.1.1-jre</version>
     </dependency>
 
     <dependency>
