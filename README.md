@@ -66,9 +66,7 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
 1. ``target/application-<version_no>.zip`` を任意のディレクトリに解凍する。
 2. 以下のコマンドにて実行する
 
-  ```
-      java -jar <1で解凍したディレクトリ名>/nablarch-example-batch-ee-<version_no>.jar <batch-job名>
-  ```
+       $java -jar <1で解凍したディレクトリ名>/nablarch-example-batch-ee-<version_no>.jar <batch-job名>
 
 
 \<batch-job名\>を変えることで、CSVからDBおよびDBからCSVへのデータ保存と、DBのTRUNCATE処理を行うことができます。
