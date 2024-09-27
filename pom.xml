@@ -5,7 +5,7 @@
 
   <groupId>com.nablarch.example</groupId>
   <artifactId>nablarch-example-batch-ee</artifactId>
-  <version>6u1</version>
+  <version>6u2</version>
 
   <properties>
     <!-- 利用するJavaのバージョン -->
@@ -18,7 +18,7 @@
     <db.adminUser>admin</db.adminUser>
     <db.user>NABLARCH_EXAMPLE</db.user>
     
-    <jberet.version>2.1.1.Final</jberet.version>
+    <jberet.version>2.1.4.Final</jberet.version>
   </properties>
 
   <build>
@@ -32,7 +32,7 @@
       <plugin>
         <groupId>jp.co.tis.gsp</groupId>
         <artifactId>gsp-dba-maven-plugin</artifactId>
-        <version>5.0.0</version>
+        <version>5.1.0</version>
         <dependencies>
           <dependency>
             <groupId>com.h2database</groupId>
@@ -76,7 +76,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.6.0</version>
         <executions>
           <execution>
             <phase>generate-sources</phase>
@@ -109,6 +109,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.7.1</version>
         <configuration>
           <descriptors>
             <descriptor>distribution.xml</descriptor>
@@ -129,19 +130,9 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.2</version>
+        <version>3.5.0</version>
         <configuration>
           <useManifestOnlyJar>false</useManifestOnlyJar>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.3</version>
-        <configuration>
-          <excludes>
-            <exclude>**/com/nablarch/example/app/entity/*</exclude>
-          </excludes>
         </configuration>
       </plugin>
     </plugins>
@@ -151,13 +142,13 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.2</version>
+          <version>3.13.0</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>2.5</version>
+          <version>3.4.2</version>
           <configuration>
             <excludes>
               <exclude>*.dicon</exclude>
@@ -166,14 +157,6 @@
         </plugin>
       </plugins>
     </pluginManagement>
-
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-webdav-jackrabbit</artifactId>
-        <version>3.0.0</version>
-      </extension>
-    </extensions>
 
   </build>
 
@@ -272,19 +255,31 @@
     <dependency>
       <groupId>org.jboss.marshalling</groupId>
       <artifactId>jboss-marshalling</artifactId>
-      <version>2.0.12.Final</version>
+      <version>2.1.3.Final</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.logging</groupId>
+      <artifactId>jboss-logging</artifactId>
+      <version>3.5.3.Final</version>
     </dependency>
 
     <dependency>
       <groupId>org.jboss.weld</groupId>
       <artifactId>weld-core-impl</artifactId>
-      <version>5.0.0.SP1</version>
+      <version>5.0.1.Final</version>
     </dependency>
 
     <dependency>
       <groupId>org.wildfly.security</groupId>
       <artifactId>wildfly-elytron-security-manager</artifactId>
-      <version>1.19.0.Final</version>
+      <version>2.2.2.Final</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>32.1.1-jre</version>
     </dependency>
 
     <dependency>
@@ -296,7 +291,7 @@
     <dependency>
       <groupId>org.jboss.weld.se</groupId>
       <artifactId>weld-se-core</artifactId>
-      <version>5.0.0.SP1</version>
+      <version>5.0.1.Final</version>
     </dependency>
 
     <dependency>
@@ -308,25 +303,19 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.12</version>
+      <version>2.0.11</version>
     </dependency>
 
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>1.2.13</version>
+      <version>1.5.6</version>
     </dependency>
 
     <dependency>
       <groupId>com.zaxxer</groupId>
       <artifactId>HikariCP</artifactId>
       <version>3.3.1</version>
-      <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>com.nablarch.integration</groupId>
-      <artifactId>slf4j-nablarch-adaptor</artifactId>
       <scope>runtime</scope>
     </dependency>
 
@@ -359,11 +348,6 @@
       <artifactId>nablarch-testing-default-configuration</artifactId>
       <scope>test</scope>
     </dependency>
-
-    <dependency>
-      <groupId>com.nablarch.integration</groupId>
-      <artifactId>nablarch-jboss-logging-adaptor</artifactId>
-    </dependency>
   </dependencies>
 
   <dependencyManagement>
@@ -371,14 +355,14 @@
       <dependency>
         <groupId>com.nablarch.profile</groupId>
         <artifactId>nablarch-bom</artifactId>
-        <version>6u1</version>
+        <version>6u2</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>5.8.2</version>
+        <version>5.11.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -391,25 +375,5 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-report-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <additionalparam>-Xdoclint:none</additionalparam>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </reporting>
 
 </project>
