@@ -1,1 +1,4 @@
  *.csv     text eol=crlf
+
+# pom.xmlはLF固定（Windowsで編集してもCRLFにしない）
+pom.xml text eol=lf
